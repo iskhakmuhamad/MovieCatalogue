@@ -1,6 +1,7 @@
 package com.movie.moviecatalog.favorite
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,9 +48,13 @@ class FavoriteFragment : Fragment() {
             }
 
             favoriteViewModel.favMovies.observe(viewLifecycleOwner) { movies ->
-                movieAdapter.setData(movies)
+                if (movies.isEmpty()){
+                    binding.tvZeroMovieFav.visibility = View.VISIBLE
+                }else{
+                    binding.tvZeroMovieFav.visibility = View.GONE
+                    movieAdapter.setData(movies)
+                }
             }
-
 
             with(binding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)

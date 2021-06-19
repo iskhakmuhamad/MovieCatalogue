@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.movie.moviecatalog.R
 import com.movie.moviecatalog.core.domain.model.Movie
 import com.movie.moviecatalog.core.ui.MovieAdapter.Companion.BASEIMG_URL
@@ -18,13 +19,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private val detailViewModel: DetailViewModel by viewModel()
-    private lateinit var binding: ActivityDetailBinding
+    private var _binding: ActivityDetailBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        binding = ActivityDetailBinding.inflate(layoutInflater)
+        _binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val movie = intent.getParcelableExtra<Movie>(EXTRA_DATA_MOVIE)
@@ -67,5 +69,10 @@ class DetailActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
