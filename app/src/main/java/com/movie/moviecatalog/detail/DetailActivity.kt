@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import com.movie.moviecatalog.R
 import com.movie.moviecatalog.core.domain.model.Movie
 import com.movie.moviecatalog.core.ui.MovieAdapter.Companion.BASEIMG_URL
